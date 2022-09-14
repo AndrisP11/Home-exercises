@@ -2,11 +2,12 @@ package io.codelex.arithmetic.practice;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
 import static java.math.BigDecimal.ZERO;
 
 public class CalculateArea {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         int choice; // The user's menu choice
 
         do {
@@ -52,8 +53,13 @@ public class CalculateArea {
 
         return userChoice;
     }
+    public static void negativeNumber(BigDecimal h) throws Exception {
 
-    public static void calculateCircleArea() {
+        if(h.doubleValue()<0){
+            throw new Exception("Can't be negative! Try again.");
+        }
+    }
+    public static void calculateCircleArea() throws Exception {
 
         BigDecimal radius = ZERO;
 
@@ -63,12 +69,14 @@ public class CalculateArea {
         //todo
 
             radius = BigDecimal.valueOf(keyboard.nextDouble());
+           negativeNumber(radius);
+
         // Display output
         System.out.println("The circle's area is "
                 + Geometry.areaOfCircle(radius));
     }
 
-    public static void calculateRectangleArea() {
+    public static void calculateRectangleArea() throws Exception {
         BigDecimal length = ZERO;
         BigDecimal width = ZERO;
 
@@ -79,18 +87,18 @@ public class CalculateArea {
         System.out.print("Enter length? ");
         //todo
         length = BigDecimal.valueOf(keyboard.nextDouble());
-
+        negativeNumber(length);
         // Get width
         System.out.print("Enter width? ");
         //todo
         width = BigDecimal.valueOf(keyboard.nextDouble());
-
+        negativeNumber(width);
         // Display output
         System.out.println("The rectangle's area is "
                 + Geometry.areaOfRectangle(length, width));
     }
 
-    public static void calculateTriangleArea() {
+    public static void calculateTriangleArea() throws Exception {
         BigDecimal base = ZERO;
         BigDecimal height = ZERO;
 
@@ -101,12 +109,12 @@ public class CalculateArea {
         System.out.print("Enter length of the triangle's base? ");
         //todo
         base = BigDecimal.valueOf(keyboard.nextDouble());
-
+        negativeNumber(base);
         // Get the height
         System.out.print("Enter triangle's height? ");
         //todo
         height = BigDecimal.valueOf(keyboard.nextDouble());
-
+        negativeNumber(height);
         // Display the triangle's area.
         System.out.println("The triangle's area is "
                 + Geometry.areaOfTriangle(base, height));
