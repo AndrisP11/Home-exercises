@@ -2,15 +2,12 @@ package io.codelex.arithmetic.practice;
 
 public class Exercise8 {
     public static void main(String[] args) {
-        Exercise8 Employee1 = new Exercise8();
-        Employee1.pay(7.50, 35);
-        Exercise8 Employee2 = new Exercise8();
-        Employee2.pay(8.20, 47);
-        Exercise8 Employee3 = new Exercise8();
-        Employee3.pay(10.00, 73);
+        pay(7.50, 35);
+        pay(8.20, 47);
+        pay(10.00, 73);
     }
 
-    public void pay(double salary, int hours) {
+    public static void pay(double salary, int hours) {
         if (salary <= 8.0) {
             System.out.println("Error. Hourly salary must be at least 8.00$ in hour.");
         } else if (hours > 60) {
