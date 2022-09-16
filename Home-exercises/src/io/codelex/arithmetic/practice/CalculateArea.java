@@ -85,13 +85,13 @@ public class CalculateArea {
         System.out.print("Enter length? ");
         //todo
         BigDecimal length = keyboard.nextBigDecimal();
-        ;
+
         length = negativeNumber(length);
         // Get width
         System.out.print("Enter width? ");
         //todo
         BigDecimal width = keyboard.nextBigDecimal();
-        ;
+
         width = negativeNumber(width);
         // Display output
         System.out.println("The rectangle's area is "
@@ -107,13 +107,13 @@ public class CalculateArea {
         System.out.print("Enter length of the triangle's base? ");
         //todo
         BigDecimal base = keyboard.nextBigDecimal();
-        ;
+
         base = negativeNumber(base);
         // Get the height
         System.out.print("Enter triangle's height? ");
         //todo
         BigDecimal height = keyboard.nextBigDecimal();
-        ;
+
         height = negativeNumber(height);
         // Display the triangle's area.
         System.out.println("The triangle's area is "
