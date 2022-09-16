@@ -6,11 +6,13 @@ public class SumAverageRunningInt {
         double average;
         int lowerBound = 1;
         int upperBound = 100;
+        double count = 0;
 
         for (int number = lowerBound; number <= upperBound; ++number) {
             sum += number;
+            count++;
         }
-        average = (double) sum / (double) upperBound;
+        average = (double) sum / count;
         System.out.println("The sum of " + lowerBound + " to " + upperBound + " is " + sum);
         System.out.println("The average is " + average);
     }
