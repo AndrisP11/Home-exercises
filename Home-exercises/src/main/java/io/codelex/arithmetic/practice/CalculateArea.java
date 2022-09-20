@@ -3,8 +3,6 @@ package io.codelex.arithmetic.practice;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-import static java.math.BigDecimal.ZERO;
-
 public class CalculateArea {
     public static void main(String[] args) throws Exception {
         int choice; // The user's menu choice
