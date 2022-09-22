@@ -1,27 +1,29 @@
 package io.codelex.loops.practice;
 
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class Piglet {
 
 
-    public int throwDie() {
-        return (int) (Math.random() * 6) + 1;
+    private int throwDie() {
+        Random random = new Random();
+        return (random.nextInt(6)) + 1;
     }
 
     public static void main(String[] args) {
 
         System.out.println("Welcome to Piglet!");
-        boolean g = true;
+        boolean isGameAgain = true;
         Piglet pig = new Piglet();
         int score = 0;
-        while (g) {
+        while (isGameAgain) {
 
-            int a = pig.throwDie();
-            score = score + a;
-            System.out.println("You rolled a " + a + "!");
-            if (a == 1) {
+            int throwResult = pig.throwDie();
+            score = score + throwResult;
+            System.out.println("You rolled a " + throwResult + "!");
+            if (throwResult == 1) {
                 score = 0;
                 System.out.println("You got " + score + " points.");
                 break;
@@ -29,11 +31,11 @@ public class Piglet {
 
             System.out.print("Roll again? ");
             Scanner in = new Scanner(System.in);
-            String b = in.nextLine();
-            if (b.equals("y") | b.equals("Y") | b.equals("yes") | b.equals("YES") | b.equals("Yes")) {
-                g = true;
-            } else if (b.equals("n") | b.equals("N") | b.equals("no") | b.equals("NO") | b.equals("No")) {
-                g = false;
+            String gameAgain = in.nextLine();
+            if (gameAgain.equals("y") || gameAgain.equals("Y") || gameAgain.equals("yes") || gameAgain.equals("YES") || gameAgain.equals("Yes")) {
+                isGameAgain = true;
+            } else if (gameAgain.equals("n") || gameAgain.equals("N") || gameAgain.equals("no") || gameAgain.equals("NO") || gameAgain.equals("No")) {
+                isGameAgain = false;
                 System.out.println("You got " + score + " points.");
             }
         }
