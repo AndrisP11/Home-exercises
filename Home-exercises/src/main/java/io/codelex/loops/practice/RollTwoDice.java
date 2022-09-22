@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class RollTwoDice {
 
-    public int throwDie() {
+    private int throwDie() {
         Random rand = new Random();
         return (rand.nextInt(6)) + 1;
     }

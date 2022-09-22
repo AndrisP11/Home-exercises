@@ -8,11 +8,11 @@ public class TenBillion {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.print("Input an integer number less than ten billion: ");
-
+        boolean checkLong = in.hasNextLong();
         long n = in.nextLong();
 
         //todo - check if Long
-        if (n > 2147483647 || n < (Math.pow(2, 64) - 1) || n < -2147483648 || n > Math.pow(-2, 63)) {
+        if (checkLong) {
             //todo - check if n is less than zero
             if (n < 0) {
                 n *= -1;
