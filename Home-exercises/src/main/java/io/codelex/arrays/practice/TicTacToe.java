@@ -7,8 +7,6 @@ public class TicTacToe {
     private static char[][] board = new char[3][3];
 
     public static void main(String[] args) {
-        boolean winnerX = false;
-        boolean winnerO = false;
         boolean winnerT = false;
         boolean winner = false;
         initBoard();
@@ -23,18 +21,17 @@ public class TicTacToe {
             int column = keyboard.nextInt();
             playerMark(row, column, pTurn);
 
-            winnerX = checkWinnerX(winnerX);
-            winnerO = checkWinnerO(winnerO);
+            char winnerFirst = checkWinner();
             winnerT = checkWinnerT(winnerT, turn);
             if (winnerT) {
                 System.out.println();
                 System.out.println("The game is a tie.");
                 winner = true;
-            } else if (winnerX) {
+            } else if (winnerFirst == 'X') {
                 System.out.println();
                 System.out.println("'X' has won the game.");
                 winner = true;
-            } else if (winnerO) {
+            } else if (winnerFirst == 'O') {
                 System.out.println();
                 System.out.println("'O' has won the game.");
                 winner = true;
@@ -59,47 +56,26 @@ public class TicTacToe {
         System.out.println("     0 1 2 ");
     }
 
-    public static boolean checkWinnerX(boolean winnerX) {
-
-        if (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X') {
-            winnerX = true;
-        } else if (board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X') {
-            winnerX = true;
-        } else if (board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X') {
-            winnerX = true;
-        } else if (board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X') {
-            winnerX = true;
-        } else if (board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X') {
-            winnerX = true;
-        } else if (board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X') {
-            winnerX = true;
-        } else if (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') {
-            winnerX = true;
-        } else if (board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == 'X') {
-            winnerX = true;
+    public static char checkWinner() {
+        char winner = ' ';
+        if (board[0][0] == 'X' && board[0][0] == board[0][1] && board[0][1] == board[0][2] || board[0][0] == 'O' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) {
+            winner = board[0][0];
+        } else if (board[1][0] == 'X' && board[1][0] == board[1][1] && board[1][1] == board[1][2] || board[1][0] == 'O' && board[1][0] == board[1][1] && board[1][1] == board[1][2]) {
+            winner = board[1][0];
+        } else if (board[2][0] == 'X' && board[2][0] == board[2][1] && board[2][1] == board[2][2] || board[2][0] == 'O' && board[2][0] == board[2][1] && board[2][1] == board[2][2]) {
+            winner = board[2][0];
+        } else if (board[0][0] == 'X' && board[0][0] == board[1][0] && board[1][0] == board[2][0] || board[0][0] == 'O' && board[0][0] == board[1][0] && board[1][0] == board[2][0]) {
+            winner = board[0][0];
+        } else if (board[0][1] == 'X' && board[0][1] == board[1][1] && board[1][1] == board[2][1] || board[0][1] == 'O' && board[0][1] == board[1][1] && board[1][1] == board[2][1]) {
+            winner = board[0][1];
+        } else if (board[0][2] == 'X' && board[0][2] == board[1][2] && board[1][2] == board[2][2] || board[0][2] == 'O' && board[0][2] == board[1][2] && board[1][2] == board[2][2]) {
+            winner = board[0][2];
+        } else if (board[0][0] == 'X' && board[0][0] == board[1][1] && board[1][1] == board[2][2] || board[0][0] == 'O' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+            winner = board[0][0];
+        } else if (board[0][2] == 'X' && board[0][2] == board[1][1] && board[1][1] == board[2][0] || board[0][2] == 'O' && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+            winner = board[0][2];
         }
-        return winnerX;
-    }
-
-    public static boolean checkWinnerO(boolean winnerO) {
-        if (board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') {
-            winnerO = true;
-        } else if (board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O') {
-            winnerO = true;
-        } else if (board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O') {
-            winnerO = true;
-        } else if (board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O') {
-            winnerO = true;
-        } else if (board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O') {
-            winnerO = true;
-        } else if (board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O') {
-            winnerO = true;
-        } else if (board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') {
-            winnerO = true;
-        } else if (board[0][2] == 'O' && board[1][1] == 'O' && board[2][0] == 'O') {
-            winnerO = true;
-        }
-        return winnerO;
+        return winner;
     }
 
     public static boolean checkWinnerT(boolean winnerT, int turn) {
@@ -125,8 +101,6 @@ public class TicTacToe {
             row = keyboard.nextInt();
             column = keyboard.nextInt();
         }
-
         board[row][column] = turn;
-
     }
 }
