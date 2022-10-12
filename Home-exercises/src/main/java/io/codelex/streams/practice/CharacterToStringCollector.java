@@ -12,43 +12,22 @@ import java.util.stream.Collector;
 public class CharacterToStringCollector implements Collector<Character, StringBuilder, String> {
     @Override
     public Supplier<StringBuilder> supplier() {
-        Supplier<StringBuilder> text = new Supplier<StringBuilder>() {
-            @Override
-            public StringBuilder get() {
-                return new StringBuilder("");
-            }
-        };
-        return text;
+        return StringBuilder::new;
     }
 
     @Override
     public BiConsumer<StringBuilder, Character> accumulator() {
-        return new BiConsumer<StringBuilder, Character>() {
-            @Override
-            public void accept(StringBuilder stringBuilder, Character character) {
-                stringBuilder.append(character);
-            }
-        };
+        return (stringBuilder, character) -> stringBuilder.append(character);
     }
 
     @Override
     public BinaryOperator<StringBuilder> combiner() {
-        return new BinaryOperator<StringBuilder>() {
-            @Override
-            public StringBuilder apply(StringBuilder stringBuilder, StringBuilder stringBuilder2) {
-                return null;
-            }
-        };
+        return (stringBuilder, stringBuilder2) -> stringBuilder.append(stringBuilder2);
     }
 
     @Override
     public Function<StringBuilder, String> finisher() {
-        return new Function<StringBuilder, String>() {
-            @Override
-            public String apply(StringBuilder stringBuilder) {
-                return String.valueOf(stringBuilder);
-            }
-        };
+        return stringBuilder -> String.valueOf(stringBuilder);
     }
 
     @Override
