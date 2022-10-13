@@ -169,6 +169,7 @@ public class StreamsExercise {
                 .reduce(0, Integer::sum);
     }
 
+
     public static IntSummaryStatistics ageSummaryStatistics(List<User> users) {
         return users.stream()
                 .collect(Collectors.summarizingInt(User::getAge));
