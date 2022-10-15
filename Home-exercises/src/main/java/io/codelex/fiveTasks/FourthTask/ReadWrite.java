@@ -11,13 +11,12 @@ public class ReadWrite {
 
         String line;
         while ((line = in.readLine()) != null) {
-            String enil = "";
-            char ch;
+            String reversedLine = "";
             for (int i = 0; i < line.length(); i++) {
-                ch = line.charAt(i);
-                enil = ch + enil;
+                char ch = line.charAt(i);
+                reversedLine = ch + reversedLine;
             }
-            out.write(enil);
+            out.write(reversedLine);
         }
         in.close();
         out.close();

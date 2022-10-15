@@ -47,7 +47,7 @@ public abstract class Card {
         this.balance = balance;
     }
 
-    public abstract void withdraw();
+    public abstract void withdraw(BigDecimal amount);
 
-    public abstract void deposit();
+    public abstract void deposit(BigDecimal amount);
 }

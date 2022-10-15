@@ -1,15 +1,17 @@
 package io.codelex.fiveTasks.ThirdTask;
 
-public class Joiner<T> {
-    private final String separator = "-";
-    private T contents;
+import java.util.List;
+import java.util.stream.Collectors;
 
-    public Joiner(T contents) {
-        this.contents = contents;
+public class Joiner<T> {
+    private String separator = "-";
+
+    public Joiner(String separator) {
+        this.separator = separator;
 
     }
 
-    public String join(T part) {
-        return contents.toString() + separator + part;
+    public String join(List<T> part) {
+        return part.stream().map(Object::toString).collect(Collectors.joining(separator));
     }
 }
