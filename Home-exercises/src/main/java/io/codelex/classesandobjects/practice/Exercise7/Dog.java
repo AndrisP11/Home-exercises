@@ -29,11 +29,7 @@ public class Dog {
     }
 
     public boolean hasSameMotherAs(String mother) {
-        boolean b = this.mother.equals(mother);
-        if (b && this.mother.equals("Unknown")) {
-            b = false;
-        }
-        return b;
+        return this.mother.equals(mother);
     }
 
     @Override

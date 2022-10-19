@@ -1,11 +1,12 @@
 package io.codelex.classesandobjects.practice.Exercise2;
 
 public class Car {
-    double startKilometers;
-    double endKilometers;
-    double liters;
+    private double startKilometers;
+    private double endKilometers;
+    private double liters;
 
-    boolean hasFillUp = false;
+
+    private boolean hasFillUp = false;
 
     public Car(double startOdo) {
         this.startKilometers = startOdo;
@@ -18,11 +19,13 @@ public class Car {
     }
 
     public boolean isGasHog() {
-        return this.calculateConsumption() > 15.0;
+        final double gasHogLowerLimit = 15.0;
+        return this.calculateConsumption() > gasHogLowerLimit;
     }
 
     public boolean isEconomyCar() {
-        return this.calculateConsumption() < 5.0;
+        final double ecoCarUpperLimit = 5.0;
+        return this.calculateConsumption() < ecoCarUpperLimit;
     }
 
     public void fillUp(double mileage, double liters) {
