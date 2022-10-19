@@ -18,12 +18,12 @@ public class BankAccount {
 
     public final void deposit(double amount) {
         //todo
-        this.balance = this.balance + amount;
+        this.balance += amount;
     }
 
     public final void withdraw(double amount) {
         //todo
-        this.balance = this.balance - amount;
+        this.balance -= amount;
     }
 
     public static void main(String[] args) {
@@ -47,9 +47,10 @@ public class BankAccount {
                 + currencyFormat(Math.abs(this.balance));
     }
 
-    public static String currencyFormat(double n) {
-        DecimalFormat f = new DecimalFormat("#,###.00",
+    public static String currencyFormat(double amount) {
+        DecimalFormat deciFormat = new DecimalFormat("#,###.00",
                 new DecimalFormatSymbols(Locale.US));
-        return f.format(n);
+        return deciFormat.format(amount);
     }
 }
+

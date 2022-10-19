@@ -56,7 +56,7 @@ public class TicTacToe {
         System.out.println("     0 1 2 ");
     }
 
-    public static char checkWinner() {
+    private static char checkWinner() {
         char winner = ' ';
         if (board[0][0] == 'X' && board[0][0] == board[0][1] && board[0][1] == board[0][2] || board[0][0] == 'O' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) {
             winner = board[0][0];

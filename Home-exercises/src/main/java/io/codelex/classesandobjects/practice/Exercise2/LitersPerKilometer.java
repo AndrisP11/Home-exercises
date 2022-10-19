@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class LitersPerKilometer {
     public static void main(String[] args) {
 
-        Car car = new Car(setStartKilometers());
-        car.fillUp(setEndKilometers(), setLiters());
+        Car car = new Car(inputStartKilometers());
+        car.fillUp(inputEndKilometers(), inputLiters());
         System.out.println("Kilometers per liter are " + car.calculateConsumption());
 
         if (car.isEconomyCar()) {
@@ -15,28 +15,28 @@ public class LitersPerKilometer {
         if (car.isGasHog()) {
             System.out.println("This is gas hog");
         }
-        car.fillUp(setEndKilometers(), setLiters());
+        car.fillUp(inputEndKilometers(), inputLiters());
         System.out.println("Kilometers per liter are " + car.calculateConsumption());
 
-        Car car2 = new Car(setStartKilometers());
-        car2.fillUp(setEndKilometers(), setLiters());
+        Car car2 = new Car(inputStartKilometers());
+        car2.fillUp(inputEndKilometers(), inputLiters());
         System.out.println("Kilometers per liter are " + car2.calculateConsumption());
     }
 
-    public static double setStartKilometers() {
+    public static double inputStartKilometers() {
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter start odometer reading: ");
         return scan.nextDouble();
     }
 
-    public static double setEndKilometers() {
+    public static double inputEndKilometers() {
 
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter mileage reading: ");
         return scan.nextDouble();
     }
 
-    public static double setLiters() {
+    public static double inputLiters() {
 
         Scanner scan = new Scanner(System.in);
         System.out.print("Enter liters reading: ");

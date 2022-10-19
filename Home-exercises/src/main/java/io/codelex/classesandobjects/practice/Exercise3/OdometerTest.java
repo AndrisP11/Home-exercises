@@ -35,26 +35,32 @@ public class OdometerTest {
             if (mileageNow + 10 == odometer1.getMileage()) {
                 fuelGouge1.fuelDown();
                 mileageNow = odometer1.getMileage();
-
-
-                boolean tooMuchFuel = false;
-                while (!tooMuchFuel) {
-
-                    System.out.print("Enter the capacity to fuel up or 0 to continue: ");
-                    int fuelUpOrNot = key.nextInt();
-                    System.out.println();
-                    if (fuelGouge1.getFuel() + fuelUpOrNot < 0 || fuelGouge1.getFuel() + fuelUpOrNot > 70) {
-                        System.out.print("Too much fuel!\nEnter how much you want to fuel up or press \"0\" to continue without fuel up: ");
-                    } else {
-                        fuelGouge1.fuelUp(fuelUpOrNot);
-                        tooMuchFuel = true;
-                    }
-                }
+                fillUp(fuelGouge1);
             }
             System.out.println("Your fuel: " + fuelGouge1.getFuel());
             System.out.println("Your mileage: " + odometer1.getMileage());
             odometer1.mileageUp();
 
+        }
+    }
+
+    private static void fillUp(FuelGauge fuelGouge1) {
+        boolean tooMuchFuel = false;
+        while (!tooMuchFuel) {
+            Scanner key = new Scanner(System.in);
+            System.out.print("Enter the capacity to fuel up or 0 to continue: ");
+            int fuelUpOrNot = key.nextInt();
+            System.out.println();
+            final int fuelTankUpperLimit = 70;
+            final int fuelTankLowerLimit = 0;
+            if (fuelGouge1.getFuel() + fuelUpOrNot > fuelTankUpperLimit) {
+                System.out.print("Too much fuel! Current fuel tank limit " + fuelTankUpperLimit + "\n");
+            } else if (fuelUpOrNot < fuelTankLowerLimit) {
+                System.out.println("Error! Fuel fill up input can only be positive number");
+            } else {
+                fuelGouge1.fuelUp(fuelUpOrNot);
+                tooMuchFuel = true;
+            }
         }
     }
 }
