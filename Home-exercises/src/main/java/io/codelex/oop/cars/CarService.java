@@ -5,13 +5,21 @@ import java.util.*;
 
 public class CarService {
 
+    private List<Car> cars = new ArrayList<>();
 
-    public static List<Car> addCarToList(List<Car> cars, Car car) {
-        cars.add(car);
+    public List<Car> getCars() {
         return cars;
     }
 
-    public static Car addCarToList2() {
+    public void setCars(List<Car> cars) {
+        this.cars = cars;
+    }
+
+    public void addCarToList(List<Car> cars, Car car) {
+        cars.add(car);
+    }
+
+    public static Car manualAddCarToList() {
         Scanner key = new Scanner(System.in);
         System.out.print("Please input car name: ");
         String carName = key.nextLine();
@@ -61,7 +69,7 @@ public class CarService {
             System.out.print(", Price: " + car.getPrice());
             System.out.print(", Year of manufacture: " + car.getYearMade());
             System.out.println();
-            car.manufacturers1.forEach(manu -> {
+            car.getManufacturers().forEach(manu -> {
                 System.out.print("Manufacturer name: " + manu.getName());
                 System.out.print(", Year of establishment: " + manu.getYear());
                 System.out.print(", Country: " + manu.getCountry());
@@ -72,20 +80,20 @@ public class CarService {
         });
     }
 
-    public static List<Car> carsWithV12(List<Car> cars) {
-        List<Car> carsV12 = new ArrayList<>();
-        carsV12 = cars.stream().filter(car -> {
-            return car.engineType.equals(EngineType.V12);
+    public static List<Car> findCarsByEngineType(List<Car> cars, EngineType engineType) {
+        List<Car> carsEngine = new ArrayList<>();
+        carsEngine = cars.stream().filter(car -> {
+            return car.engineType.equals(engineType);
         }).toList();
-        return carsV12;
+        return carsEngine;
     }
 
-    public static List<Car> carsBefore1999(List<Car> cars) {
-        List<Car> carsB1999 = new ArrayList<>();
-        carsB1999 = cars.stream().filter(car -> {
-            return car.getYearMade() < 1999;
+    public static List<Car> carsBeforeYear(List<Car> cars, int year) {
+        List<Car> carsBefore = new ArrayList<>();
+        carsBefore = cars.stream().filter(car -> {
+            return car.getYearMade() < year;
         }).toList();
-        return carsB1999;
+        return carsBefore;
     }
 
     public static List<Car> carsMaxCost(List<Car> cars) {
@@ -116,10 +124,10 @@ public class CarService {
         return carsMinCost;
     }
 
-    public static List<Car> carsWithThreeManufacturers(List<Car> cars) {
+    public static List<Car> carsWithThreeManufacturers(List<Car> cars, int count) {
         List<Car> carsWithThreeManu = new ArrayList<>();
         carsWithThreeManu = cars.stream().filter(car -> {
-            return car.manufacturers1.size() >= 3;
+            return car.getManufacturers().size() >= count;
         }).toList();
         return carsWithThreeManu;
     }
@@ -146,16 +154,16 @@ public class CarService {
         return carsFindCar;
     }
 
-    public static List<Car> carsFindByManufacturer(List<Car> cars, String manufacturer) {
-        List<Car> carsFindByManufacturer = new ArrayList<>();
+    public static List<Car> findByManufacturer(List<Car> cars, String manufacturer) {
+        List<Car> findByManufacturer = new ArrayList<>();
         for (int j = 0; j < cars.size(); j++) {
-            for (int i = 0; i < cars.get(j).manufacturers1.size(); i++) {
-                if (cars.get(j).manufacturers1.get(i).getName().equals(manufacturer)) {
-                    carsFindByManufacturer.add(cars.get(j));
+            for (int i = 0; i < cars.get(j).getManufacturers().size(); i++) {
+                if (cars.get(j).getManufacturers().get(i).getName().equals(manufacturer)) {
+                    findByManufacturer.add(cars.get(j));
                 }
             }
         }
-        return carsFindByManufacturer;
+        return findByManufacturer;
     }
 
     public static List<Car> carsFindManuYear(List<Car> cars) {
@@ -170,8 +178,8 @@ public class CarService {
         String compareSymbol = key.nextLine();
 
         for (int j = 0; j < cars.size(); j++) {
-            for (int i = 0; i < cars.get(j).manufacturers1.size(); i++) {
-                if (cars.get(j).manufacturers1.get(i).getName().equals(manuName)) {
+            for (int i = 0; i < cars.get(j).getManufacturers().size(); i++) {
+                if (cars.get(j).getManufacturers().get(i).getName().equals(manuName)) {
                     if (compareSymbol.equals("<")) {
                         if (cars.get(j).getYearMade() < yearSearch) {
                             carsFindManuYear.add(cars.get(j));

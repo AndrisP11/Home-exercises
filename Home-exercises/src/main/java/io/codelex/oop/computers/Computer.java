@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Computer {
 
-    String processor;
-    String ram;
-    String graphicsCard;
-    String company;
-    String model;
+    private String processor;
+    private String ram;
+    private String graphicsCard;
+    private String company;
+    private String model;
 
     public Computer(String processor, String ram, String graphicsCard, String company, String model) {
         this.processor = processor;
@@ -74,7 +74,11 @@ public class Computer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Computer computer = (Computer) o;
-        return Objects.equals(processor, computer.processor) && Objects.equals(ram, computer.ram) && Objects.equals(graphicsCard, computer.graphicsCard) && Objects.equals(company, computer.company) && Objects.equals(model, computer.model);
+        return Objects.equals(processor, computer.processor) &&
+                Objects.equals(ram, computer.ram) &&
+                Objects.equals(graphicsCard, computer.graphicsCard) &&
+                Objects.equals(company, computer.company) &&
+                Objects.equals(model, computer.model);
     }
 
     @Override

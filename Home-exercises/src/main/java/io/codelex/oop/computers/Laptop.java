@@ -32,11 +32,11 @@ public class Laptop extends Computer {
     public String toString() {
         return "Laptop " +
                 "battery='" + battery + '\'' +
-                ", processor='" + processor + '\'' +
-                ", ram='" + ram + '\'' +
-                ", graphicsCard='" + graphicsCard + '\'' +
-                ", company='" + company + '\'' +
-                ", model='" + model + '\'' +
+                ", processor='" + getProcessor() + '\'' +
+                ", ram='" + getRam() + '\'' +
+                ", graphicsCard='" + getGraphicsCard() + '\'' +
+                ", company='" + getCompany() + '\'' +
+                ", model='" + getModel() + '\'' +
                 ' ';
     }
 

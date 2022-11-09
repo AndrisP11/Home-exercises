@@ -2,8 +2,8 @@ package io.codelex.oop.shape;
 
 public class Cone extends ThreeDShape {
 
-    double height;
-    double radius;
+    private double height;
+    private double radius;
 
     public Cone(int height, int radius) {
         this.height = height;
