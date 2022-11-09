@@ -8,8 +8,10 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] args) {
 
-        List<Car> cars = inputTenCarsInCarsList();
-        CarService.displayCarList(cars);
+        CarService service = new CarService();
+        Test test = new Test();
+        test.inputTenCarsInCarsList(service);
+        CarService.displayCarList(service.getCars());
 
         boolean isTrue2 = false;
         while (!isTrue2) {
@@ -18,11 +20,11 @@ public class Test {
             System.out.println("1 to add new car to cars list ");
             System.out.println("2 to remove car from cars list ");
             System.out.println("3 to display cars in cars list ");
-            System.out.println("4 to display cars only with V12 engine ");
-            System.out.println("5 to display only cars produced before 1999 ");
+            System.out.println("4 to display cars only with selected engine ");
+            System.out.println("5 to display only cars produced before selected year ");
             System.out.println("6 to display only most expensive car ");
             System.out.println("7 to display cheapest car ");
-            System.out.println("8 to display cars with at least 3 manufacturers ");
+            System.out.println("8 to display cars with at least selected manufacturers ");
             System.out.println("9 to display ascending or descending cars list by car name, from user input ");
             System.out.println("10 to display specific car from the list ");
             System.out.println("11 to display a list of cars by a specific manufacturer ");
@@ -33,56 +35,80 @@ public class Test {
 
             switch (text) {
                 case "1":
-                    CarService.addCarToList(cars, CarService.addCarToList2());
-                    CarService.displayCarList(cars);
+                    service.addCarToList(service.getCars(), CarService.manualAddCarToList());
+                    CarService.displayCarList(service.getCars());
                     break;
                 case "2":
                     System.out.print("Please input car name: ");
                     String carName2 = key.nextLine();
-                    cars = CarService.removeCarFromList(cars, carName2);
-                    CarService.displayCarList(cars);
+                    service.setCars(CarService.removeCarFromList(service.getCars(), carName2));
+                    CarService.displayCarList(service.getCars());
                     break;
                 case "3":
-                    CarService.displayCarList(cars);
+                    CarService.displayCarList(service.getCars());
                     break;
                 case "4":
-                    List<Car> carsV12 = CarService.carsWithV12(cars);
-                    CarService.displayCarList(carsV12);
+                    System.out.println("Please choose car engine from V12, V8, V6, S6, S4, S3");
+                    System.out.print("Please input car engine: ");
+                    String carEngine = key.nextLine();
+                    List<Car> carsV12 = CarService.findCarsByEngineType(service.getCars(), EngineType.valueOf(carEngine));
+                    if (carsV12.size() == 0) {
+                        System.out.println("Have not found any cars.");
+                        System.out.println();
+                    } else {
+                        CarService.displayCarList(carsV12);
+                    }
                     break;
                 case "5":
-                    List<Car> carsB1999 = CarService.carsBefore1999(cars);
-                    CarService.displayCarList(carsB1999);
+                    System.out.print("Please input year car was made: ");
+                    int year = key.nextInt();
+                    key.nextLine();
+                    List<Car> carsBefore = CarService.carsBeforeYear(service.getCars(), year);
+                    if (carsBefore.size() == 0) {
+                        System.out.println("Have not found any cars.");
+                        System.out.println();
+                    } else {
+                        CarService.displayCarList(carsBefore);
+                    }
                     break;
                 case "6":
-                    List<Car> carsMaxCost = CarService.carsMaxCost(cars);
+                    List<Car> carsMaxCost = CarService.carsMaxCost(service.getCars());
                     CarService.displayCarList(carsMaxCost);
                     break;
                 case "7":
-                    List<Car> carsMinCost = CarService.carsMinCost(cars);
+                    List<Car> carsMinCost = CarService.carsMinCost(service.getCars());
                     CarService.displayCarList(carsMinCost);
                     break;
                 case "8":
-                    List<Car> carsWithThreeManu = CarService.carsWithThreeManufacturers(cars);
-                    CarService.displayCarList(carsWithThreeManu);
+                    System.out.print("Please select how many car manufacturers car at least has to have: ");
+                    int count = key.nextInt();
+                    key.nextLine();
+                    List<Car> carsWithManu = CarService.carsWithThreeManufacturers(service.getCars(), count);
+                    if (carsWithManu.size() == 0) {
+                        System.out.println("Have not found any cars.");
+                        System.out.println();
+                    } else {
+                        CarService.displayCarList(carsWithManu);
+                    }
                     break;
                 case "9":
-                    List<Car> carsAscendingName = CarService.carsAscendingName(cars);
+                    List<Car> carsAscendingName = CarService.carsAscendingName(service.getCars());
                     CarService.displayCarList(carsAscendingName);
                     break;
                 case "10":
                     System.out.print("Please input car name: ");
                     String carName3 = key.nextLine();
-                    List<Car> carsFindCar = CarService.carsFindCar(cars, carName3);
+                    List<Car> carsFindCar = CarService.carsFindCar(service.getCars(), carName3);
                     CarService.displayCarList(carsFindCar);
                     break;
                 case "11":
                     System.out.print("Please input car manufacturer name: ");
                     String manuName2 = key.nextLine();
-                    List<Car> carsFindByManufacturer = CarService.carsFindByManufacturer(cars, manuName2);
-                    CarService.displayCarList(carsFindByManufacturer);
+                    List<Car> findByManufacturer = CarService.findByManufacturer(service.getCars(), manuName2);
+                    CarService.displayCarList(findByManufacturer);
                     break;
                 case "12":
-                    List<Car> carsFindManuYear = CarService.carsFindManuYear(cars);
+                    List<Car> carsFindManuYear = CarService.carsFindManuYear(service.getCars());
                     CarService.displayCarList(carsFindManuYear);
                     break;
                 case "0":
@@ -92,7 +118,7 @@ public class Test {
         }
     }
 
-    public static List<Car> inputTenCarsInCarsList() {
+    public void inputTenCarsInCarsList(CarService service) {
         List<Manufacturer> forCar1 = new ArrayList<>();
         List<Manufacturer> forCar2 = new ArrayList<>();
         List<Manufacturer> forCar3 = new ArrayList<>();
@@ -167,18 +193,15 @@ public class Test {
         Car car9 = new Car("Mercedes-Benz", "300 SL", 1954, BigDecimal.valueOf(54561), forCar9, EngineType.S3);
         Car car10 = new Car("Atlantic", "Type 57SC", 1936, BigDecimal.valueOf(100200), forCar10, EngineType.S3);
 
-        List<Car> cars = new ArrayList<>();
-
-        CarService.addCarToList(cars, car1);
-        CarService.addCarToList(cars, car2);
-        CarService.addCarToList(cars, car3);
-        CarService.addCarToList(cars, car4);
-        CarService.addCarToList(cars, car5);
-        CarService.addCarToList(cars, car6);
-        CarService.addCarToList(cars, car7);
-        CarService.addCarToList(cars, car8);
-        CarService.addCarToList(cars, car9);
-        CarService.addCarToList(cars, car10);
-        return cars;
+        service.addCarToList(service.getCars(), car1);
+        service.addCarToList(service.getCars(), car2);
+        service.addCarToList(service.getCars(), car3);
+        service.addCarToList(service.getCars(), car4);
+        service.addCarToList(service.getCars(), car5);
+        service.addCarToList(service.getCars(), car6);
+        service.addCarToList(service.getCars(), car7);
+        service.addCarToList(service.getCars(), car8);
+        service.addCarToList(service.getCars(), car9);
+        service.addCarToList(service.getCars(), car10);
     }
 }

@@ -1,7 +1,6 @@
 package io.codelex.oop.cars;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +11,7 @@ public class Car {
     private BigDecimal price;
 
     private int yearMade;
-    List<Manufacturer> manufacturers1;
+    private List<Manufacturer> manufacturers;
     EngineType engineType;
 
     public Car(String carName, String model, int yearMade, BigDecimal price, List<Manufacturer> manufacturer, EngineType engine) {
@@ -22,7 +21,7 @@ public class Car {
         this.yearMade = yearMade;
         this.price = price;
         this.engineType = engine;
-        this.manufacturers1 = manufacturer;
+        this.manufacturers = manufacturer;
     }
 
     @Override
@@ -55,8 +54,8 @@ public class Car {
         return yearMade;
     }
 
-    public List<Manufacturer> getManufacturers1() {
-        return manufacturers1;
+    public List<Manufacturer> getManufacturers() {
+        return manufacturers;
     }
 
     public EngineType getEngineType() {

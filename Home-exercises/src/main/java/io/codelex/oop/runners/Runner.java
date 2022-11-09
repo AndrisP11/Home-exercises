@@ -15,16 +15,14 @@ public enum Runner {
     }
 
     static String getFitnessLevel(int time) {
-        String result = "";
         if (ADVANCED.min < time && time < ADVANCED.max) {
-            result = ADVANCED.name();
+            return ADVANCED.name();
+        } else if (INTERMEDIATE.min < time && time < INTERMEDIATE.max) {
+            return INTERMEDIATE.name();
+        } else if (BEGINNER.min < time && time < BEGINNER.max) {
+            return BEGINNER.name();
+        } else {
+            return "Invalid time";
         }
-        if (INTERMEDIATE.min < time && time < INTERMEDIATE.max) {
-            result = INTERMEDIATE.name();
-        }
-        if (BEGINNER.min < time && time < BEGINNER.max) {
-            result = BEGINNER.name();
-        }
-        return result;
     }
 }
